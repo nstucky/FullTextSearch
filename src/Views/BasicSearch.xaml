@@ -31,7 +31,7 @@
                Style="{StaticResource LabelTextStyle}">
       Search Directory
     </TextBlock>
-    <TextBox Width="300"
+    <TextBox Width="500"
              Name="txtDirectory"
              Grid.Row="0"
              Grid.Column="1" 
@@ -40,7 +40,7 @@
     <TextBlock Grid.Row="1"
                Grid.Column="0"
                Style="{StaticResource LabelTextStyle}">File extension(s)</TextBlock>
-    <TextBox Width="300"
+    <TextBox Width="200"
              Name="txtExtension"
              Grid.Row="1"
              Grid.Column="1" 
@@ -74,23 +74,79 @@
                 Orientation="Horizontal"
                 Name="stkButtons">
       <Button Name="btnSearch"
-              Command="{Binding BeginSearchCommand}">Search</Button>
+              Command="{Binding BeginSearchCommand}"
+              IsDefault="True">Search</Button>
     </StackPanel>
     <ListView Name="vlvwResults"
               Grid.Row="4"
               Grid.Column="0"
               Grid.ColumnSpan="3" 
               ItemsSource="{Binding Results}"
-              Background="Transparent">
+              Background="Transparent"
+              Foreground="White">
       <ListView.ItemContainerStyle>
         <Style TargetType="ListViewItem">
           <Setter Property="IsSelected"
                   Value="{Binding IsSelected, Mode=TwoWay}" />
-          <Setter Property="Background"
-                  Value="Transparent" />
+          <Style.Triggers>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="IsSelected"
+                           Value="true" />
+                <Condition Property="Selector.IsSelectionActive"
+                           Value="true" />
+              </MultiTrigger.Conditions>
+              <Setter Property="Background"
+                      Value="Transparent" />
+              <Setter Property="BorderBrush"
+                      Value="White" />
+              <Setter Property="BorderThickness"
+                      Value="2" />
+            </MultiTrigger>
+            <MultiTrigger>
+              <MultiTrigger.Conditions>
+                <Condition Property="IsSelected"
+                           Value="false" />
+                <Condition Property="IsMouseOver"
+                           Value="true" />
+              </MultiTrigger.Conditions>
+              <Setter Property="Background"
+                      Value="Transparent" />
+              <Setter Property="BorderBrush"
+                      Value="DarkGray" />
+              <Setter Property="BorderThickness"
+                      Value="2" />
+            </MultiTrigger>
+          </Style.Triggers>
+          <!--<Setter Property="Background"
+                  Value="#FF404040" />-->
         </Style>
       </ListView.ItemContainerStyle>
-      <ListView.ItemTemplate>
+      
+      <ListView.View>
+        <GridView>
+          <GridViewColumn Header="File Name" 
+                          Width="150">
+            <GridViewColumn.CellTemplate>
+              <DataTemplate>
+                <Label>
+                  <Hyperlink Click="Hyperlink_Click"
+                             IsEnabled="{Binding IsSelected}">
+                    <TextBlock Text="{Binding FileName}" />
+                  </Hyperlink>
+                </Label>
+              </DataTemplate>
+            </GridViewColumn.CellTemplate>
+          </GridViewColumn>
+          <GridViewColumn DisplayMemberBinding="{Binding Text}"
+                          Header="Source Text" 
+                          Width="400"/>
+          <GridViewColumn DisplayMemberBinding="{Binding PathFileName}"
+                          Header="Full Path" 
+                          Width="225"/>
+        </GridView>
+      </ListView.View>
+      <!--<ListView.ItemTemplate>
         <ItemContainerTemplate>
           <Grid>
             <Grid.ColumnDefinitions>
@@ -113,7 +169,7 @@
                        Grid.Column="2"/>
           </Grid>
         </ItemContainerTemplate>
-      </ListView.ItemTemplate>
+      </ListView.ItemTemplate>-->
     </ListView>
   </Grid>
 </Page>

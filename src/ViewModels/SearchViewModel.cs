@@ -114,6 +114,11 @@ namespace FullTextSearch.ViewModels
     {
       BeginSearchCommand = new Commands.SearchCommand(BeginSearch);
       p_vmResults = new ObservableCollection<ResultViewModel>();
+      p_sDirectory = string.Empty;
+      p_sFileExtensions = string.Empty;
+      p_sSearchText = string.Empty;
+      p_fRegex = false;
+      p_fMatchCase = false;
     }
 
     #endregion
