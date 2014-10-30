@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullTextSearch", "FullTextSearch.csproj", "{D7CC3EE4-5712-4F35-A1EA-4427B4E7F2F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullTextSearch.MSTest", "..\FullTextSearch.MSTest\FullTextSearch.MSTest.csproj", "{768060AD-9D07-47A2-BF12-D8CB38853948}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7CC3EE4-5712-4F35-A1EA-4427B4E7F2F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7CC3EE4-5712-4F35-A1EA-4427B4E7F2F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7CC3EE4-5712-4F35-A1EA-4427B4E7F2F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7CC3EE4-5712-4F35-A1EA-4427B4E7F2F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{768060AD-9D07-47A2-BF12-D8CB38853948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{768060AD-9D07-47A2-BF12-D8CB38853948}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{768060AD-9D07-47A2-BF12-D8CB38853948}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{768060AD-9D07-47A2-BF12-D8CB38853948}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

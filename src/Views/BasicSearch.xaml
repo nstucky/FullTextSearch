@@ -1,0 +1,119 @@
+﻿<Page x:Class="FullTextSearch.Views.BasicSearch"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      d:DesignHeight="600"
+      d:DesignWidth="800"
+      Title="BasicSearch"
+      xmlns:vms="clr-namespace:FullTextSearch.ViewModels">
+  <Page.DataContext>
+    <vms:SearchViewModel />
+  </Page.DataContext>
+  
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="Auto" />
+    </Grid.ColumnDefinitions>
+    <TextBlock Grid.Row="0"
+               Grid.Column="0"
+               Style="{StaticResource LabelTextStyle}">
+      Search Directory
+    </TextBlock>
+    <TextBox Width="300"
+             Name="txtDirectory"
+             Grid.Row="0"
+             Grid.Column="1" 
+             HorizontalAlignment="Left"
+             Text="{Binding Directory, Mode=TwoWay}"/>
+    <TextBlock Grid.Row="1"
+               Grid.Column="0"
+               Style="{StaticResource LabelTextStyle}">File extension(s)</TextBlock>
+    <TextBox Width="300"
+             Name="txtExtension"
+             Grid.Row="1"
+             Grid.Column="1" 
+             HorizontalAlignment="Left"
+             Text="{Binding FileExtensions, Mode=TwoWay}"/>
+    <TextBlock Grid.Row="2"
+               Grid.Column="0"
+               Style="{StaticResource LabelTextStyle}">
+      Search Text
+    </TextBlock>
+    <TextBox Grid.Row="2"
+             Grid.Column="1"
+             Name="txtSearchText" 
+             Text="{Binding SearchText, Mode=TwoWay}"/>
+    <StackPanel Grid.Row="0"
+                Grid.Column="3"
+                Grid.RowSpan="3">
+      <TextBlock Style="{StaticResource NormalTextStyle}">
+        Options</TextBlock>
+      <CheckBox Style="{StaticResource CheckBoxStyle}"
+                Name="chkRegex"
+                IsChecked="{Binding Regex, Mode=TwoWay}">Use Regular Expressions</CheckBox>
+      <CheckBox Style="{StaticResource CheckBoxStyle}"
+                Name="chkMatchCase"
+                IsChecked="{Binding MatchCase, Mode=TwoWay}">Match Case</CheckBox>
+    </StackPanel>
+    <StackPanel Grid.Row="3"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal"
+                Name="stkButtons">
+      <Button Name="btnSearch"
+              Command="{Binding BeginSearchCommand}">Search</Button>
+    </StackPanel>
+    <ListView Name="vlvwResults"
+              Grid.Row="4"
+              Grid.Column="0"
+              Grid.ColumnSpan="3" 
+              ItemsSource="{Binding Results}"
+              Background="Transparent">
+      <ListView.ItemContainerStyle>
+        <Style TargetType="ListViewItem">
+          <Setter Property="IsSelected"
+                  Value="{Binding IsSelected, Mode=TwoWay}" />
+          <Setter Property="Background"
+                  Value="Transparent" />
+        </Style>
+      </ListView.ItemContainerStyle>
+      <ListView.ItemTemplate>
+        <ItemContainerTemplate>
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition />
+              <ColumnDefinition />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label Margin="3"
+                   Grid.Column="0">
+              <Hyperlink Click="Hyperlink_Click"
+                         IsEnabled="{Binding IsSelected}">
+                <TextBlock Text="{Binding FileName}" />
+              </Hyperlink>
+            </Label>
+            <TextBlock Text="{Binding Text}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Grid.Column="1"/>
+            <TextBlock Text="{Binding PathFileName}"
+                       Style="{StaticResource NormalTextStyle}" 
+                       Grid.Column="2"/>
+          </Grid>
+        </ItemContainerTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </Grid>
+</Page>

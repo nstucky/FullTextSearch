@@ -1,0 +1,6 @@
+﻿This is a pretty lame text file just needed for Unit Tests.
+
+The test should be able to find the Awesome Text that's in this sentence.
+Only case-insensitive tests will find this awesome text as well.
+
+That is all.

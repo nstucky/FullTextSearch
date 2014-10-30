@@ -1,0 +1,11 @@
+﻿Most of what is in this file doesn't particularly matter.
+
+Only some of the text should be found.
+
+Everything above me should be ignored
+FIND THIS TEXT HERE -> Awesome Text <- END OF TEXT TO FIND
+
+FIND ME TOO -> Awesome Text <- END OF TEXT TO FIND 2
+Everything below me should be ignored
+
+The rest of this file doesn't really matter.
