@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace FullTextSearch.ViewModels
 {
@@ -12,18 +14,21 @@ namespace FullTextSearch.ViewModels
   {
     #region Private Variables
 
-    string p_sDirectory;
-    string p_sFileExtensions;
-    string p_sSearchText;
-    bool p_fRegex;
-    bool p_fMatchCase;
-    ObservableCollection<ResultViewModel> p_vmResults;
+    private string p_sDirectory;
+    private string p_sFileExtensions;
+    private string p_sSearchText;
+    private bool p_fRegex;
+    private bool p_fMatchCase;
+    private bool p_fSearching;
+    private ObservableCollection<ResultViewModel> p_vmResults;
+    private bool p_fProgressIndeterminite;
+    private int p_iProgress;
     
     #endregion
 
     #region Properties
 
-    public ICommand BeginSearchCommand { get; private set; }
+    public Commands.SearchCommand BeginSearchCommand { get; private set; }
 
     public string Directory
     {
@@ -106,37 +111,104 @@ namespace FullTextSearch.ViewModels
       }
     }
 
+    public bool Searching
+    {
+      get
+      {
+        return p_fSearching;
+      }
+      set
+      {
+        p_fSearching = value;
+        NotifyPropertyChanged();
+      }
+    }
+
+    public int Progress
+    {
+      get
+      {
+        return p_iProgress;
+      }
+      set
+      {
+        p_iProgress = value;
+        NotifyPropertyChanged();
+        if (p_iProgress > 0 && p_fProgressIndeterminite) ProgressIndeterminite = false;
+        if (p_iProgress == 0 && !p_fProgressIndeterminite) ProgressIndeterminite = true;
+      }
+
+    }
+
+    public bool ProgressIndeterminite
+    {
+      get 
+      {
+        return p_fProgressIndeterminite;
+      }
+      set
+      {
+        p_fProgressIndeterminite = value;
+        NotifyPropertyChanged();
+      }
+    }
+
     #endregion
 
     #region Constructors
 
     public SearchViewModel()
     {
-      BeginSearchCommand = new Commands.SearchCommand(BeginSearch);
+      BeginSearchCommand = new Commands.SearchCommand();
+      BeginSearchCommand.Executed += BeginSearchCommand_Executed;
       p_vmResults = new ObservableCollection<ResultViewModel>();
       p_sDirectory = string.Empty;
       p_sFileExtensions = string.Empty;
       p_sSearchText = string.Empty;
       p_fRegex = false;
       p_fMatchCase = false;
+      p_fSearching = false;
     }
 
     #endregion
 
-    #region Methods
+    #region Event Handlers
 
-    public void BeginSearch()
+    private void BeginSearchCommand_Executed(object sender, EventArgs e)
     {
-      var lstResults = FullTextSearch.Models.FileSearch.FindAllFiles(Directory, FileExtensions, SearchText, Regex, MatchCase);
+      Results.Clear();
+      Searching = true;
+      BackgroundWorker bwWorker = new BackgroundWorker();
+      bwWorker.WorkerReportsProgress = true;
+      bwWorker.DoWork += bwWorker_DoWork;
+      bwWorker.ProgressChanged += bwWorker_ProgressChanged;
+      bwWorker.RunWorkerAsync(Dispatcher.CurrentDispatcher);
+    }
 
-      foreach (var oResult in lstResults)
-      {
-        ResultViewModel vmResult = new ResultViewModel()
+    private void bwWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+    {
+      Progress = e.ProgressPercentage;
+    }
+
+    private void bwWorker_DoWork(object sender, DoWorkEventArgs e)
+    {
+      var lstResults = FullTextSearch.Models.FileSearch.FindAllFiles(Directory, FileExtensions, SearchText, Regex, MatchCase, (BackgroundWorker)sender);
+
+      if (e.Argument is Dispatcher){
+        ((Dispatcher)e.Argument).BeginInvoke(new System.Action(() =>
         {
-          PathFileName = oResult.File,
-          Text = oResult.Text
-        };
-        Results.Add(vmResult);
+          foreach (var oResult in lstResults)
+          {
+            ResultViewModel vmResult = new ResultViewModel()
+            {
+              PathFileName = oResult.File,
+              Text = oResult.Text
+            };
+            Results.Add(vmResult);
+          }
+          Searching = false;
+          Progress = 0;
+        }));
       }
     }
 

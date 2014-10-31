@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullTextSearch", "FullTextSearch.csproj", "{D7CC3EE4-5712-4F35-A1EA-4427B4E7F2F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullTextSearch.MSTest", "..\FullTextSearch.MSTest\FullTextSearch.MSTest.csproj", "{768060AD-9D07-47A2-BF12-D8CB38853948}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FullTextSearch.MSTest", "..\MSTest\FullTextSearch.MSTest.csproj", "{768060AD-9D07-47A2-BF12-D8CB38853948}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

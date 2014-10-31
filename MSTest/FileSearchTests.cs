@@ -1,6 +1,7 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 
@@ -33,7 +34,7 @@ namespace FullTextSearch.MSTest
       };
 
       //act
-      List<FullTextSearch.Models.Result> oActualResults = FullTextSearch.Models.FileSearch.FindAllFiles(sDirectory, sFileExtensions, sTextToFind, false, true);
+      List<FullTextSearch.Models.Result> oActualResults = FullTextSearch.Models.FileSearch.FindAllFiles(sDirectory, sFileExtensions, sTextToFind, false, true, new BackgroundWorker() { WorkerReportsProgress = true });
 
       //assert
       Assert.AreEqual(string.Join(",", oExpectedResults.Select(r => r.ToString())), 
@@ -68,7 +69,7 @@ namespace FullTextSearch.MSTest
       };
 
       //act
-      List<FullTextSearch.Models.Result> oActualResults = FullTextSearch.Models.FileSearch.FindAllFiles(sDirectory, sFileExtensions, sTextToFind, false, false);
+      List<FullTextSearch.Models.Result> oActualResults = FullTextSearch.Models.FileSearch.FindAllFiles(sDirectory, sFileExtensions, sTextToFind, false, false, new BackgroundWorker() { WorkerReportsProgress = true });
 
       //assert
       Assert.AreEqual(string.Join(",", oExpectedResults.Select(r => r.ToString())),
@@ -95,7 +96,7 @@ namespace FullTextSearch.MSTest
       };
 
       //act
-      List<FullTextSearch.Models.Result> oActualResults = FullTextSearch.Models.FileSearch.FindAllFiles(sDirectory, sFileExtensions, sTextToFind, true, true);
+      List<FullTextSearch.Models.Result> oActualResults = FullTextSearch.Models.FileSearch.FindAllFiles(sDirectory, sFileExtensions, sTextToFind, true, true, new BackgroundWorker() { WorkerReportsProgress = true });
 
       //assert
       Assert.AreEqual(string.Join(",", oExpectedResults.Select(r => r.ToString())),
@@ -126,7 +127,7 @@ namespace FullTextSearch.MSTest
       };
 
       //act
-      List<FullTextSearch.Models.Result> oActualResults = FullTextSearch.Models.FileSearch.FindAllFiles(sDirectory, sFileExtensions, sTextToFind, true, true);
+      List<FullTextSearch.Models.Result> oActualResults = FullTextSearch.Models.FileSearch.FindAllFiles(sDirectory, sFileExtensions, sTextToFind, true, true, new BackgroundWorker() { WorkerReportsProgress = true});
 
       //assert
       Assert.AreEqual(string.Join(",", oExpectedResults.Select(r => r.ToString())),
@@ -161,7 +162,7 @@ namespace FullTextSearch.MSTest
       };
 
       //act
-      List<FullTextSearch.Models.Result> oActualResults = FullTextSearch.Models.FileSearch.FindAllFiles(sDirectory, sFileExtensions, sTextToFind, true, false);
+      List<FullTextSearch.Models.Result> oActualResults = FullTextSearch.Models.FileSearch.FindAllFiles(sDirectory, sFileExtensions, sTextToFind, true, false, new BackgroundWorker() { WorkerReportsProgress = true });
 
       //assert
       Assert.AreEqual(string.Join(",", oExpectedResults.Select(r => r.ToString())),

@@ -10,12 +10,7 @@ namespace FullTextSearch.Commands
   public class SearchCommand : ICommand
   {
     public event EventHandler CanExecuteChanged;
-    private System.Action p_actBeginSearch;
-
-    public SearchCommand(System.Action actBeginSearch)
-    {
-      p_actBeginSearch = actBeginSearch;
-    }
+    public event EventHandler Executed;
 
     public bool CanExecute(object obj) 
     {
@@ -29,7 +24,7 @@ namespace FullTextSearch.Commands
 
     public void Execute(object obj)
     {
-      p_actBeginSearch();
+      Executed(this, new EventArgs());
     }
   }
 }

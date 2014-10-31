@@ -11,6 +11,11 @@
   <Page.DataContext>
     <vms:SearchViewModel />
   </Page.DataContext>
+  <Page.Resources>
+    <ResourceDictionary>
+      <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+    </ResourceDictionary>
+  </Page.Resources>
   
   <Grid>
     <Grid.RowDefinitions>
@@ -19,7 +24,7 @@
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto" />
       <RowDefinition Height="*"/>
-      <RowDefinition Height="Auto" />
+      <RowDefinition Height="20" />
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="Auto"/>
@@ -75,7 +80,8 @@
                 Name="stkButtons">
       <Button Name="btnSearch"
               Command="{Binding BeginSearchCommand}"
-              IsDefault="True">Search</Button>
+              IsDefault="True">Search
+      </Button>
     </StackPanel>
     <ListView Name="vlvwResults"
               Grid.Row="4"
@@ -118,14 +124,11 @@
                       Value="2" />
             </MultiTrigger>
           </Style.Triggers>
-          <!--<Setter Property="Background"
-                  Value="#FF404040" />-->
         </Style>
       </ListView.ItemContainerStyle>
-      
       <ListView.View>
         <GridView>
-          <GridViewColumn Header="File Name" 
+          <GridViewColumn Header="File Name"
                           Width="150">
             <GridViewColumn.CellTemplate>
               <DataTemplate>
@@ -139,37 +142,21 @@
             </GridViewColumn.CellTemplate>
           </GridViewColumn>
           <GridViewColumn DisplayMemberBinding="{Binding Text}"
-                          Header="Source Text" 
-                          Width="400"/>
+                          Header="Source Text"
+                          Width="400" />
           <GridViewColumn DisplayMemberBinding="{Binding PathFileName}"
-                          Header="Full Path" 
-                          Width="225"/>
+                          Header="Full Path"
+                          Width="225" />
         </GridView>
       </ListView.View>
-      <!--<ListView.ItemTemplate>
-        <ItemContainerTemplate>
-          <Grid>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition />
-              <ColumnDefinition />
-              <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Label Margin="3"
-                   Grid.Column="0">
-              <Hyperlink Click="Hyperlink_Click"
-                         IsEnabled="{Binding IsSelected}">
-                <TextBlock Text="{Binding FileName}" />
-              </Hyperlink>
-            </Label>
-            <TextBlock Text="{Binding Text}"
-                       Style="{StaticResource NormalTextStyle}" 
-                       Grid.Column="1"/>
-            <TextBlock Text="{Binding PathFileName}"
-                       Style="{StaticResource NormalTextStyle}" 
-                       Grid.Column="2"/>
-          </Grid>
-        </ItemContainerTemplate>
-      </ListView.ItemTemplate>-->
     </ListView>
+    <ProgressBar IsIndeterminate="{Binding ProgressIndeterminite}"
+                 Value="{Binding Progress}"
+                 Grid.Row="5"
+                 Grid.Column="2"
+                 HorizontalAlignment="Right"
+                 Height="20" 
+                 Width="100"
+                 Visibility="{Binding Searching, Converter={StaticResource VisibilityConverter}}"/>
   </Grid>
 </Page>
