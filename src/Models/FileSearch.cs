@@ -26,7 +26,10 @@ namespace FullTextSearch.Models
 
       if (System.IO.Directory.Exists(sDirectory))
       {
-        IEnumerable<string> lstFiles = System.IO.Directory.EnumerateFiles(sDirectory, sFileExtensions, System.IO.SearchOption.AllDirectories).AsParallel();
+        //Get all files at once so we can get the full count and report progress back to the user.  It will probably take slightly longer than 
+        //if we we're reporting progress and just enumerating the files, but then we would have no way of telling how many files are returned until
+        //we go through the whole list.
+        List<string> lstFiles = System.IO.Directory.GetFiles(sDirectory, sFileExtensions, System.IO.SearchOption.AllDirectories).ToList();
         int iCount = lstFiles.Count();
         double dCurrentFile = 0; //needs to be a double or the integer division won't work
 
