@@ -40,7 +40,6 @@ namespace FullTextSearch.Models
 
           //Read all text
           string sFileText = System.IO.File.ReadAllText(sFile);
-          Result oResult = null;
 
           //TODO: refactor this code to make it prettier.  It should work for the time being though
           if (fUseRegex)
@@ -49,28 +48,18 @@ namespace FullTextSearch.Models
             if (!fMatchCase) eOptions |= RegexOptions.IgnoreCase;
             foreach (Match oMatch in Regex.Matches(sFileText, sSearchFor, eOptions))
             {
-              oResult = new Result()
-              {
-                File = sFile,
-                Text = oMatch.Value
-              };
-              lstResults.Add(oResult);
+              lstResults.Add(new Result(oMatch.Value, sFile));
             }
           }
           else
           {
-            if (sFileText.Contains(sSearchFor) || (!fMatchCase && sFileText.ToLower().Contains(sSearchFor.ToLower())))
+            if (fMatchCase ? sFileText.Contains(sSearchFor) : sFileText.ToLower().Contains(sSearchFor.ToLower()))
             {
               string[] asFileText = sFileText.Split(Environment.NewLine.ToArray());
-              foreach (string sResult in asFileText.Where(s => (fMatchCase ? s : s.ToLower()).Contains((fMatchCase ? sSearchFor : sSearchFor.ToLower()))))
-              {
-                oResult = new Result()
-                {
-                  File = sFile,
-                  Text = sResult
-                };
-                lstResults.Add(oResult);
-              }              
+
+              //Finds all matches and adds them to the results list
+              lstResults.AddRange(asFileText.Where(s => (fMatchCase ? s : s.ToLower()).Contains((fMatchCase ? sSearchFor : sSearchFor.ToLower())))
+                                            .Select((sResult) => new Result(sResult, sFile))); 
             }
           }
           ++dCurrentFile;
