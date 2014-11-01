@@ -7,8 +7,8 @@ using System.Windows.Input;
 
 namespace FullTextSearch.Commands
 {
-  public class SearchCommand : CommandBase
+  public class BrowseCommand : CommandBase
   {
-    
+
   }
 }

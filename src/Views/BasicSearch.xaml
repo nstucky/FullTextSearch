@@ -36,12 +36,19 @@
                Style="{StaticResource LabelTextStyle}">
       Search Directory
     </TextBlock>
-    <TextBox Width="500"
-             Name="txtDirectory"
-             Grid.Row="0"
-             Grid.Column="1" 
-             HorizontalAlignment="Left"
-             Text="{Binding Directory, Mode=TwoWay}"/>
+    <StackPanel Grid.Row="0"
+                Grid.Column="1"
+                Orientation="Horizontal">
+      <TextBox Width="500"
+               Name="txtDirectory"
+               HorizontalAlignment="Left"
+               Text="{Binding Directory, Mode=TwoWay}" 
+               Padding="3"/>
+      <Button Width="25"
+              Command="{Binding BrowseDirectoryCommand}"
+              Content="..." 
+              Padding="3"/>
+    </StackPanel>
     <TextBlock Grid.Row="1"
                Grid.Column="0"
                Style="{StaticResource LabelTextStyle}">File extension(s)</TextBlock>

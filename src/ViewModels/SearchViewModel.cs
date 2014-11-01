@@ -29,6 +29,7 @@ namespace FullTextSearch.ViewModels
     #region Properties
 
     public Commands.SearchCommand BeginSearchCommand { get; private set; }
+    public Commands.BrowseCommand BrowseDirectoryCommand { get; private set; }
 
     public string Directory
     {
@@ -161,6 +162,8 @@ namespace FullTextSearch.ViewModels
     {
       BeginSearchCommand = new Commands.SearchCommand();
       BeginSearchCommand.Executed += BeginSearchCommand_Executed;
+      BrowseDirectoryCommand = new Commands.BrowseCommand();
+      BrowseDirectoryCommand.Executed += BrowseDirectoryCommand_Executed;
       p_vmResults = new ObservableCollection<ResultViewModel>();
       p_sDirectory = string.Empty;
       p_sFileExtensions = string.Empty;
@@ -210,6 +213,17 @@ namespace FullTextSearch.ViewModels
           Progress = 0;
         }));
       }
+    }
+
+    private void BrowseDirectoryCommand_Executed(object sender, EventArgs e)
+    {
+      var oBrowse = new System.Windows.Forms.FolderBrowserDialog()
+      {
+        Description = "Search Directory",
+        ShowNewFolderButton = false
+      };
+      if (oBrowse.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        Directory = oBrowse.SelectedPath;
     }
 
     #endregion
