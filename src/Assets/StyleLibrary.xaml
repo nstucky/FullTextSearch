@@ -50,4 +50,12 @@
     <Setter Property="Foreground"
             Value="{StaticResource TextBrush}" />
   </Style>
+  <Style TargetType="Button">
+    <Setter Property="Margin"
+            Value="3" />
+    <Setter Property="Foreground"
+            Value="{StaticResource TextBrush}" />
+    <Setter Property="Background"
+            Value="#FF363636" />
+  </Style>
 </ResourceDictionary>

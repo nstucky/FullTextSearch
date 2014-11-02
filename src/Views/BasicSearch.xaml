@@ -46,8 +46,7 @@
                Margin="3"/>
       <Button Width="25"
               Command="{Binding BrowseCommand}"
-              Content="..." 
-              Margin="3"/>
+              Content="..."/>
     </StackPanel>
     <TextBlock Grid.Row="1"
                Grid.Column="0"
@@ -68,7 +67,7 @@
     </TextBlock>
     <TextBox Grid.Row="2"
              Grid.Column="1"
-             Name="txtSearchText" 
+             Name="txtSearchText"
              Margin="3"
              Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
     <StackPanel Grid.Row="0"

@@ -7,6 +7,15 @@
       d:DesignHeight="600"
       d:DesignWidth="800"
       Title="Result Detail">
+  <Window.Background>
+    <LinearGradientBrush EndPoint="0,1"
+                         StartPoint="0,0">
+      <GradientStop Color="#FF363636"
+                    Offset="0" />
+      <GradientStop Color="#FF232323"
+                    Offset="1" />
+    </LinearGradientBrush>
+  </Window.Background>
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
@@ -15,13 +24,12 @@
     <StackPanel Grid.Row="0"
                 Orientation="Horizontal">
       <Button Content="_Open with default program" 
-              Command="{Binding OpenFileCommand}"
-              Margin="3"/>
+              Command="{Binding OpenFileCommand}"/>
       <Button Content="_Save" 
               Command="{Binding SaveFileCommand}"
-              Margin="3"
               IsEnabled="{Binding CanSave}"/>
       <CheckBox Content="_Enable Editing"
+                Style="{StaticResource CheckBoxStyle}"
                 Margin="3,6,3,3"
                 IsChecked="{Binding WriteEnabled, Mode=TwoWay}"
                 Name="chkWriteEnabled"/>
@@ -33,6 +41,9 @@
              AcceptsTab="True"
              ScrollViewer.VerticalScrollBarVisibility="Auto"
              ScrollViewer.HorizontalScrollBarVisibility="Auto"
-             ScrollViewer.CanContentScroll="True"/>
+             ScrollViewer.CanContentScroll="True"
+             Background="Transparent"
+             Foreground="White"
+             CaretBrush="White"/>
   </Grid>
 </Window>
