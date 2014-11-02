@@ -54,10 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\BrowseCommand.cs" />
+    <Compile Include="Commands\DefaultCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Models\FileSearch.cs" />
-    <Compile Include="Commands\SearchCommand.cs" />
     <Compile Include="ViewModels\ResultDetailViewModel.cs" />
     <Compile Include="ViewModels\ResultViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

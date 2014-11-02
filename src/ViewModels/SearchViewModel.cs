@@ -28,8 +28,8 @@ namespace FullTextSearch.ViewModels
 
     #region Properties
 
-    public Commands.SearchCommand BeginSearchCommand { get; private set; }
-    public Commands.BrowseCommand BrowseDirectoryCommand { get; private set; }
+    public Commands.DefaultCommand SearchCommand { get; private set; }
+    public Commands.DefaultCommand BrowseCommand { get; private set; }
 
     public string Directory
     {
@@ -160,10 +160,10 @@ namespace FullTextSearch.ViewModels
 
     public SearchViewModel()
     {
-      BeginSearchCommand = new Commands.SearchCommand();
-      BeginSearchCommand.Executed += BeginSearchCommand_Executed;
-      BrowseDirectoryCommand = new Commands.BrowseCommand();
-      BrowseDirectoryCommand.Executed += BrowseDirectoryCommand_Executed;
+      SearchCommand = new Commands.DefaultCommand();
+      SearchCommand.Executed += BeginSearchCommand_Executed;
+      BrowseCommand = new Commands.DefaultCommand();
+      BrowseCommand.Executed += BrowseDirectoryCommand_Executed;
       p_vmResults = new ObservableCollection<ResultViewModel>();
       p_sDirectory = string.Empty;
       p_sFileExtensions = string.Empty;

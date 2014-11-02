@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace FullTextSearch.Commands
 {
-  public class BrowseCommand : CommandBase
+  public class DefaultCommand : CommandBase
   {
 
   }

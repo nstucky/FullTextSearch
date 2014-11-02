@@ -43,30 +43,34 @@
                Name="txtDirectory"
                HorizontalAlignment="Left"
                Text="{Binding Directory, Mode=TwoWay}" 
-               Padding="3"/>
+               Margin="3"/>
       <Button Width="25"
-              Command="{Binding BrowseDirectoryCommand}"
+              Command="{Binding BrowseCommand}"
               Content="..." 
-              Padding="3"/>
+              Margin="3"/>
     </StackPanel>
     <TextBlock Grid.Row="1"
                Grid.Column="0"
+               Margin="3"
                Style="{StaticResource LabelTextStyle}">File extension(s)</TextBlock>
     <TextBox Width="200"
              Name="txtExtension"
              Grid.Row="1"
              Grid.Column="1" 
              HorizontalAlignment="Left"
+             Margin="3"
              Text="{Binding FileExtensions, Mode=TwoWay}"/>
     <TextBlock Grid.Row="2"
                Grid.Column="0"
+               Margin="3"
                Style="{StaticResource LabelTextStyle}">
       Search Text
     </TextBlock>
     <TextBox Grid.Row="2"
              Grid.Column="1"
              Name="txtSearchText" 
-             Text="{Binding SearchText, Mode=TwoWay}"/>
+             Margin="3"
+             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
     <StackPanel Grid.Row="0"
                 Grid.Column="3"
                 Grid.RowSpan="3">
@@ -86,17 +90,21 @@
                 Orientation="Horizontal"
                 Name="stkButtons">
       <Button Name="btnSearch"
-              Command="{Binding BeginSearchCommand}"
-              IsDefault="True">Search
+              Command="{Binding SearchCommand}"
+              IsDefault="True"
+              Margin="3">Search
       </Button>
     </StackPanel>
     <ListView Name="vlvwResults"
               Grid.Row="4"
               Grid.Column="0"
-              Grid.ColumnSpan="3" 
+              Grid.ColumnSpan="3"
               ItemsSource="{Binding Results}"
               Background="Transparent"
-              Foreground="White">
+              Foreground="White"
+              ScrollViewer.CanContentScroll="True"
+              ScrollViewer.VerticalScrollBarVisibility="Auto"
+              ScrollViewer.PanningMode="VerticalOnly">
       <ListView.ItemContainerStyle>
         <Style TargetType="ListViewItem">
           <Setter Property="IsSelected"

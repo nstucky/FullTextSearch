@@ -25,12 +25,12 @@ namespace FullTextSearch.Views
 
     public ResultDetail()
     {
-      InitializeComponent();
+      Initialize();
     }
 
     public ResultDetail(ResultViewModel vmResult)
     {
-      InitializeComponent();
+      Initialize();
       if (vmResult == null)
       {
         MessageBox.Show("Invalid argument passed to detail screen!");
@@ -40,6 +40,25 @@ namespace FullTextSearch.Views
       p_vmDetail = new ResultDetailViewModel(vmResult);
       DataContext = p_vmDetail;
     }
+
+    private void Initialize()
+    {
+      InitializeComponent();
+      this.Closing += ResultDetail_Closing;
+    }
+
+    private void ResultDetail_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+    {
+      if (p_vmDetail.Changed)
+      {
+        e.Cancel = MessageBox.Show("Are you sure you want to close without saving?", 
+                                   "Result Detail", 
+                                   MessageBoxButton.YesNo, 
+                                   MessageBoxImage.Question, 
+                                   MessageBoxResult.Yes) == MessageBoxResult.No;
+      }
+    }
+
 
   }
 }
