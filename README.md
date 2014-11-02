@@ -1,4 +1,5 @@
-# FullTextSearch: A tool for searching through the text of large amounts of files
+# FullTextSearch
+## A tool for searching through the text of large amounts of files
 ==============
 
 * **Overview**
@@ -36,4 +37,4 @@
   - If you would like to contribute to this project, pull requests are accepted
   
 * **License**
-FullTextSearch uses the GNU GPLv3 license.  You can get a copy of the license [here](http://www.gnu.org/licenses/gpl.txt)
+  - FullTextSearch uses the GNU GPLv3 license.  You can get a copy of the license [here](http://www.gnu.org/licenses/gpl.txt)
