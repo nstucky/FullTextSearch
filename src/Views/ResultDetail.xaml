@@ -40,6 +40,7 @@
                 Style="{StaticResource CheckBoxStyle}"
                 Margin="3,6,3,3"
                 IsChecked="{Binding WriteEnabled, Mode=TwoWay}"
+                IsEnabled="{Binding CanEdit}"
                 Name="chkWriteEnabled"/>
     </StackPanel>
     <TextBox Grid.Row="1"

@@ -34,6 +34,7 @@ namespace FullTextSearch.ViewModels
     private string p_sFileText;
     private bool p_fReadOnly;
     private bool p_fChanged;
+    private bool p_fCanEdit;
 
     #endregion
 
@@ -49,6 +50,7 @@ namespace FullTextSearch.ViewModels
       SaveFileCommand.Executed += SaveFileCommand_Executed;
       p_fReadOnly = true;
       p_fChanged = false;
+      CanEdit = !(new System.IO.FileInfo(PathFileName).IsReadOnly);
       if (!string.IsNullOrWhiteSpace(PathFileName))
       {
         p_sFileText = System.IO.File.ReadAllText(PathFileName);
@@ -122,6 +124,19 @@ namespace FullTextSearch.ViewModels
         p_fChanged = value;
         NotifyPropertyChanged();
         NotifyPropertyChanged("CanSave");
+      }
+    }
+
+    public bool CanEdit
+    {
+      get
+      {
+        return p_fCanEdit;
+      }
+      set
+      {
+        p_fCanEdit = value;
+        NotifyPropertyChanged();
       }
     }
 

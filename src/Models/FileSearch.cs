@@ -41,6 +41,31 @@ namespace FullTextSearch.Models
     /// <param name="fMatchCase"></param>
     /// <param name="bwWorker"></param>
     /// <returns></returns>
+    /// <exception cref="System.ArgumentException">
+    ///    path is a zero-length string, contains only white space, or contains one
+    ///    or more invalid characters as defined by System.IO.Path.InvalidPathChars.
+    ///    -or- searchPattern does not contain a valid pattern.
+    /// </exception>
+    /// <exception cref="System.UnauthorizedAccessException">
+    ///   The caller does not have the required permission.
+    /// </exception>
+    /// <exception cref="System.IO.DirectoryNotFoundException">
+    ///   The specified path is invalid (for example, it is on an unmapped drive).
+    /// </exception>
+    /// <exception cref="System.IO.PathTooLongException">
+    ///    The specified path, file name, or both exceed the system-defined maximum
+    ///    length. For example, on Windows-based platforms, paths must be less than
+    ///    248 characters and file names must be less than 260 characters.
+    /// </exception>
+    /// <exception cref="System.IO.IOException">
+    ///   path is a file name.-or-A network error has occurred.
+    /// </exception>
+    /// <exception cref="System.NotSupportedException">
+    ///   path is in an invalid format.
+    /// </exception>
+    /// <exception cref="System.Security.SecurityException">
+    ///   The caller does not have the required permission.
+    /// </exception>  
     public static List<Result> FindAllFiles(string sDirectory, string sFileExtensions, string sSearchFor, bool fUseRegex, bool fMatchCase, BackgroundWorker bwWorker)
     {
       List<Result> lstResults = new List<Result>();

@@ -216,8 +216,31 @@ namespace FullTextSearch.ViewModels
 
     private void bwWorker_DoWork(object sender, DoWorkEventArgs e)
     {
-      var lstResults = FullTextSearch.Models.FileSearch.FindAllFiles(Directory, FileExtensions, SearchText, Regex, MatchCase, (BackgroundWorker)sender);
+      List<Models.Result> lstResults;
 
+      //Try to find the files with the specified criteria, but if an exception occurs give a message to the user
+      try
+      {
+        lstResults = FullTextSearch.Models.FileSearch.FindAllFiles(Directory, FileExtensions, SearchText, Regex, MatchCase, (BackgroundWorker)sender);
+      }
+      catch (Exception ex)
+      {
+        //Only show the message of the exception if the exception is one that we expect to receive.  For anything else re-throw the exception
+        //to preserve the stack trace
+        if (ex is ArgumentException || ex is UnauthorizedAccessException || ex is System.IO.DirectoryNotFoundException || 
+            ex is System.IO.PathTooLongException || ex is System.IO.IOException || ex is NotSupportedException ||
+            ex is System.Security.SecurityException)
+        {
+          System.Windows.MessageBox.Show(ex.Message);
+          Searching = false;
+          return;
+        }
+        else
+        {
+          throw;
+        }
+      }
+      
       if (e.Argument is Dispatcher){
         ((Dispatcher)e.Argument).BeginInvoke(new System.Action(() =>
         {
