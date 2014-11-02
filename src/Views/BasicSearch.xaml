@@ -35,9 +35,10 @@
   
   <Grid>
     <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
       <RowDefinition Height="Auto" />
       <RowDefinition Height="*"/>
       <RowDefinition Height="20" />
@@ -47,12 +48,26 @@
       <ColumnDefinition Width="*"/>
       <ColumnDefinition Width="Auto" />
     </Grid.ColumnDefinitions>
-    <TextBlock Grid.Row="0"
+    <Menu Grid.Row="0"
+          Grid.Column="0"
+          Grid.ColumnSpan="3">
+      <MenuItem Header="_File">
+        <MenuItem Name="mnuExit"
+                  Header="E_xit"
+                  Click="mnuExit_Click" />
+      </MenuItem>
+      <MenuItem Header="_Help">
+        <MenuItem Name="mnuAbout"
+                  Header="_About"
+                  Click="mnuAbout_Click" />
+      </MenuItem>
+    </Menu>
+    <TextBlock Grid.Row="1"
                Grid.Column="0"
                Style="{StaticResource LabelTextStyle}">
       Search Directory
     </TextBlock>
-    <StackPanel Grid.Row="0"
+    <StackPanel Grid.Row="1"
                 Grid.Column="1"
                 Orientation="Horizontal">
       <TextBox Width="500"
@@ -64,29 +79,29 @@
               Command="{Binding BrowseCommand}"
               Content="..."/>
     </StackPanel>
-    <TextBlock Grid.Row="1"
+    <TextBlock Grid.Row="2"
                Grid.Column="0"
                Margin="3"
                Style="{StaticResource LabelTextStyle}">File extension(s)</TextBlock>
     <TextBox Width="200"
              Name="txtExtension"
-             Grid.Row="1"
+             Grid.Row="2"
              Grid.Column="1" 
              HorizontalAlignment="Left"
              Margin="3"
              Text="{Binding FileExtensions, Mode=TwoWay}"/>
-    <TextBlock Grid.Row="2"
+    <TextBlock Grid.Row="3"
                Grid.Column="0"
                Margin="3"
                Style="{StaticResource LabelTextStyle}">
       Search Text
     </TextBlock>
-    <TextBox Grid.Row="2"
+    <TextBox Grid.Row="3"
              Grid.Column="1"
              Name="txtSearchText"
              Margin="3"
              Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-    <StackPanel Grid.Row="0"
+    <StackPanel Grid.Row="1"
                 Grid.Column="3"
                 Grid.RowSpan="3">
       <TextBlock Style="{StaticResource NormalTextStyle}">
@@ -98,7 +113,7 @@
                 Name="chkMatchCase"
                 IsChecked="{Binding MatchCase, Mode=TwoWay}">Match Case</CheckBox>
     </StackPanel>
-    <StackPanel Grid.Row="3"
+    <StackPanel Grid.Row="4"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
                 HorizontalAlignment="Right"
@@ -111,7 +126,7 @@
       </Button>
     </StackPanel>
     <ListView Name="vlvwResults"
-              Grid.Row="4"
+              Grid.Row="5"
               Grid.Column="0"
               Grid.ColumnSpan="3"
               ItemsSource="{Binding Results}"
@@ -182,7 +197,7 @@
     </ListView>
     <ProgressBar IsIndeterminate="{Binding ProgressIndeterminite}"
                  Value="{Binding Progress}"
-                 Grid.Row="5"
+                 Grid.Row="6"
                  Grid.Column="2"
                  HorizontalAlignment="Right"
                  Height="20" 

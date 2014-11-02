@@ -56,5 +56,15 @@ namespace FullTextSearch.Views
       viewDetail.Activate();
     }
 
+    private void mnuAbout_Click(object sender, RoutedEventArgs e)
+    {
+      var oAbout = new About();
+      oAbout.Show();
+    }
+
+    private void mnuExit_Click(object sender, RoutedEventArgs e)
+    {
+      Application.Current.Shutdown();
+    }
   }
 }
