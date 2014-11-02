@@ -8,9 +8,9 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("FullTextSearch")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A tool for searching through the text of large amounts of files")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Nathan Stucky")]
 [assembly: AssemblyProduct("FullTextSearch")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]

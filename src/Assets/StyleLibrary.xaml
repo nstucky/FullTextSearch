@@ -1,4 +1,20 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<!-- License
+    Copyright (C) 2014  Nathan Stucky
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.   
+-->  
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <FontFamily x:Key="ApplicationFontFamily">Lucida Bright</FontFamily>
   <Color x:Key="HeaderColor">LightBlue</Color>
@@ -7,6 +23,14 @@
                    Color="{StaticResource HeaderColor}" />
   <SolidColorBrush x:Key="TextBrush"
                    Color="{StaticResource TextColor}" />
+  <LinearGradientBrush x:Key="WindowBackground"
+                       EndPoint="0,1"
+                       StartPoint="0,0">
+    <GradientStop Color="#FF363636"
+                  Offset="0" />
+    <GradientStop Color="#FF232323"
+                  Offset="1" />
+  </LinearGradientBrush>
   <Style x:Key="NormalTextStyle"
          TargetType="TextBlock">
     <Setter Property="FontFamily"
@@ -57,5 +81,10 @@
             Value="{StaticResource TextBrush}" />
     <Setter Property="Background"
             Value="#FF363636" />
+  </Style>
+  <Style TargetType="Window"
+         x:Key="WindowStyle">
+    <Setter Property="Background"
+            Value="{StaticResource WindowBackground}" />
   </Style>
 </ResourceDictionary>

@@ -25,7 +25,7 @@
   - The main goal of this project is to allow intelligent searching of text using multiline regular expressions
     - This can allow you to find very specific pieces of information in a vast amount of files
     - It can take quite a while to find all of the files with very complicated expressions though
-  - The file extensions must fit the criteria for the function 'System.IO.Directory.GetFiles(String, String, SearchOption)'
+  - The file extensions must fit the criteria for the function `System.IO.Directory.GetFiles(String, String, SearchOption)`
     - This function is documented [here](http://msdn.microsoft.com/en-us/library/ms143316(v=vs.110).aspx)
   - The regular expressions accepted are from on the .NET framework's regular expressions
     - There is documentation for them [here](http://msdn.microsoft.com/en-us/library/az24scfc(v=vs.110).aspx)
@@ -36,4 +36,4 @@
   - If you would like to contribute to this project, pull requests are accepted
   
 * **License**
-Coming soon
+FullTextSearch uses the GNU GPLv3 license.  You can get a copy of the license [here](http://www.gnu.org/licenses/gpl.txt)
