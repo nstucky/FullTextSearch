@@ -1,2 +1,8 @@
 v0.8 - Initial release
 - Includes all basic functionality
+
+v0.8.1 - Minor Release
+- Added ability to open the containing folder of a result from the detail
+- Added ability to open the detail via double clicking on it in the listview
+- Assemblies should now be signed
+- Added an icon
