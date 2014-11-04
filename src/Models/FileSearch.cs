@@ -101,11 +101,11 @@ namespace FullTextSearch.Models
           {
             if (fMatchCase ? sFileText.Contains(sSearchFor) : sFileText.ToLower().Contains(sSearchFor.ToLower()))
             {
-              string[] asFileText = sFileText.Split(Environment.NewLine.ToArray());
+              string[] asFileText = sFileText.Split('\n');
 
               //Finds all matches and adds them to the results list
               lstResults.AddRange(asFileText.Where(s => (fMatchCase ? s : s.ToLower()).Contains((fMatchCase ? sSearchFor : sSearchFor.ToLower())))
-                                            .Select((sResult) => new Result(sResult, sFile))); 
+                                            .Select((sResult) => new Result(sResult.Trim(), sFile))); 
             }
           }
           ++dCurrentFile;
