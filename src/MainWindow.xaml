@@ -24,5 +24,6 @@
                   ShowsNavigationUI="False"
                   HorizontalContentAlignment="Stretch"
                   VerticalContentAlignment="Stretch"
+                  Icon="Assets/FullTextSearch.ico"
                   Style="{StaticResource WindowStyle}">
 </NavigationWindow>
