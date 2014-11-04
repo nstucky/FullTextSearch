@@ -33,6 +33,8 @@
                 Orientation="Horizontal">
       <Button Content="_Open with default program" 
               Command="{Binding OpenFileCommand}"/>
+      <Button Content="Open _containing folder"
+              Command="{Binding OpenFolderCommand}" />
       <Button Content="_Save" 
               Command="{Binding SaveFileCommand}"
               IsEnabled="{Binding CanSave}"/>

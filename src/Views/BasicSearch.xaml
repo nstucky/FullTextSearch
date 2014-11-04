@@ -134,7 +134,8 @@
               Foreground="White"
               ScrollViewer.CanContentScroll="True"
               ScrollViewer.VerticalScrollBarVisibility="Auto"
-              ScrollViewer.PanningMode="VerticalOnly">
+              ScrollViewer.PanningMode="VerticalOnly"
+              MouseDoubleClick="Hyperlink_Click">
       <ListView.ItemContainerStyle>
         <Style TargetType="ListViewItem">
           <Setter Property="IsSelected"
