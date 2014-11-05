@@ -20,7 +20,7 @@
         Title="About"
         Height="300"
         Width="370"
-        Icon="Assets/FullTextSearch.ico"
+        Icon="../Assets/FullTextSearch.ico"
         xmlns:vms="clr-namespace:FullTextSearch.ViewModels"
         Style="{StaticResource WindowStyle}">
   <Window.DataContext>

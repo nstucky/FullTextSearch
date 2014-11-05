@@ -23,7 +23,7 @@
         d:DesignHeight="600"
         d:DesignWidth="800"
         Title="Result Detail"
-        Icon="Assets/FullTextSearch.ico"
+        Icon="../Assets/FullTextSearch.ico"
         Style="{StaticResource WindowStyle}">
   <Grid>
     <Grid.RowDefinitions>
