@@ -19,8 +19,10 @@
     - You can make basic edits to the file in the tool itself, or have it open the file in the default program for it's file type
 
 * **Getting Started**
-  - There currently is no installation, but that should be added shortly
-  - Just run the program and you should be good to go
+  - The program is now installed with a ClickOnce installer.
+    - Just download the latest release, unzip the files, and open either FullTextSearch.application or setup.exe
+    - The program will automatically install and should run after installation is complete
+    - A desktop shortcut will be created automatically for the tool
   
 * **Detailed Usage**
   - The main goal of this project is to allow intelligent searching of text using multiline regular expressions
