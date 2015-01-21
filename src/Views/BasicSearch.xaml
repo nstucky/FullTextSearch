@@ -134,8 +134,7 @@
               Foreground="White"
               ScrollViewer.CanContentScroll="True"
               ScrollViewer.VerticalScrollBarVisibility="Auto"
-              ScrollViewer.PanningMode="VerticalOnly"
-              MouseDoubleClick="Hyperlink_Click">
+              ScrollViewer.PanningMode="VerticalOnly">
       <ListView.ItemContainerStyle>
         <Style TargetType="ListViewItem">
           <Setter Property="IsSelected"
@@ -190,9 +189,19 @@
           <GridViewColumn DisplayMemberBinding="{Binding Text}"
                           Header="Source Text"
                           Width="400" />
-          <GridViewColumn DisplayMemberBinding="{Binding PathFileName}"
-                          Header="Full Path"
-                          Width="225" />
+          <GridViewColumn Header="File Directory"
+                          Width="300" >
+            <GridViewColumn.CellTemplate>
+              <DataTemplate>
+                <Label>
+                  <Hyperlink Command="{Binding OpenFolderCommand}"
+                             IsEnabled="{Binding IsSelected}">
+                    <TextBlock Text="{Binding FilePath}"/>
+                  </Hyperlink>
+                </Label>
+              </DataTemplate>
+            </GridViewColumn.CellTemplate>
+          </GridViewColumn>
         </GridView>
       </ListView.View>
     </ListView>

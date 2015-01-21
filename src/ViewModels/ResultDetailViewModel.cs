@@ -48,8 +48,6 @@ namespace FullTextSearch.ViewModels
       OpenFileCommand.Executed += OpenFileCommand_Executed;
       SaveFileCommand = new Commands.DefaultCommand();
       SaveFileCommand.Executed += SaveFileCommand_Executed;
-      OpenFolderCommand = new Commands.DefaultCommand();
-      OpenFolderCommand.Executed += OpenFolderCommand_Executed;
       p_fReadOnly = true;
       p_fChanged = false;
       CanEdit = !(new System.IO.FileInfo(PathFileName).IsReadOnly);
@@ -144,7 +142,6 @@ namespace FullTextSearch.ViewModels
 
     public Commands.DefaultCommand OpenFileCommand { get; private set; }
     public Commands.DefaultCommand SaveFileCommand { get; private set; }
-    public Commands.DefaultCommand OpenFolderCommand { get; private set; }
 
     #endregion
 
@@ -162,11 +159,6 @@ namespace FullTextSearch.ViewModels
     void OpenFileCommand_Executed(object sender, EventArgs e)
     {
       System.Diagnostics.Process.Start(PathFileName);
-    }
-
-    void OpenFolderCommand_Executed(object sender, EventArgs e)
-    {
-      System.Diagnostics.Process.Start(System.IO.Path.GetDirectoryName(PathFileName));
     }
 
     #endregion

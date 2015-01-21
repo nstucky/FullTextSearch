@@ -37,6 +37,9 @@ namespace FullTextSearch.ViewModels
       p_sPathFileName = string.Empty;
       p_sText = string.Empty;
       p_fIsSelected = false;
+      p_sFilePath = string.Empty;
+      OpenFolderCommand = new Commands.DefaultCommand();
+      OpenFolderCommand.Executed += OpenFolderCommand_Executed;
     }
 
     #endregion
@@ -47,6 +50,7 @@ namespace FullTextSearch.ViewModels
     private string p_sPathFileName;
     private string p_sText;
     private bool p_fIsSelected;
+    private string p_sFilePath;
 
     #endregion
 
@@ -77,6 +81,7 @@ namespace FullTextSearch.ViewModels
         {
           p_sPathFileName = value;
           NotifyPropertyChanged();
+          FilePath = System.IO.Path.GetDirectoryName(p_sPathFileName);
           FileName = System.IO.Path.GetFileName(p_sPathFileName);
         }
       }
@@ -109,6 +114,33 @@ namespace FullTextSearch.ViewModels
           NotifyPropertyChanged();
         }
       }
+    }
+
+    public string FilePath
+    {
+      get
+      {
+        return p_sFilePath;
+      }
+      set
+      {
+        if (value != p_sFilePath)
+        {
+          p_sFilePath = value;
+          NotifyPropertyChanged();
+        }
+      }
+    }
+
+    public Commands.DefaultCommand OpenFolderCommand { get; private set; }
+
+    #endregion
+
+    #region "Event Handlers"
+
+    void OpenFolderCommand_Executed(object sender, EventArgs e)
+    {
+      System.Diagnostics.Process.Start(FilePath);
     }
 
     #endregion

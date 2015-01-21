@@ -56,6 +56,8 @@
              ScrollViewer.CanContentScroll="True"
              Background="Transparent"
              Foreground="White"
-             CaretBrush="White"/>
+             CaretBrush="White"
+             Name="txtFileText"
+             TextChanged="txtFileText_TextChanged"/>
   </Grid>
 </Window>

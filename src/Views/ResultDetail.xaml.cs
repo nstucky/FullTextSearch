@@ -43,6 +43,7 @@ namespace FullTextSearch.Views
   public partial class ResultDetail : Window
   {
     private ResultDetailViewModel p_vmDetail;
+    private bool p_fLoading;
 
     public ResultDetail()
     {
@@ -51,6 +52,7 @@ namespace FullTextSearch.Views
 
     public ResultDetail(ResultViewModel vmResult)
     {
+      p_fLoading = true;
       Initialize();
       if (vmResult == null)
       {
@@ -80,6 +82,16 @@ namespace FullTextSearch.Views
       }
     }
 
+    private void txtFileText_TextChanged(object sender, TextChangedEventArgs e)
+    {
+      if (p_fLoading)
+      {
+        txtFileText.Focus();
+        txtFileText.SelectionStart = txtFileText.Text.IndexOf(p_vmDetail.Text);
+        txtFileText.SelectionLength = p_vmDetail.Text.Length;
+        p_fLoading = false;
+      }
+    }
 
   }
 }
