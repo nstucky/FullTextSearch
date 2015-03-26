@@ -31,6 +31,14 @@ namespace FullTextSearch.Models
 {
   public class FileSearch
   {
+    protected static HunterFactory Factory
+    {
+      get
+      {
+        return new HunterFactory();
+      }
+    }
+
     /// <summary>
     /// This method will find all the files in the specified directory with matching criteria for the arguments.
     /// </summary>
@@ -78,7 +86,8 @@ namespace FullTextSearch.Models
         List<string> lstFiles = System.IO.Directory.GetFiles(sDirectory, sFileExtensions, System.IO.SearchOption.AllDirectories).ToList();
         int iCount = lstFiles.Count();
         double dCurrentFile = 0; //needs to be a double or the integer division won't work
-
+        var oHunter = Factory.GetHunter(fUseRegex, fMatchCase);
+        
         foreach (string sFile in lstFiles)
         {
           //Report progress to background worker
@@ -87,27 +96,13 @@ namespace FullTextSearch.Models
           //Read all text
           string sFileText = System.IO.File.ReadAllText(sFile);
 
-          //TODO: refactor this code to make it prettier.  It should work for the time being though
-          if (fUseRegex)
+          //Search for any matches, and if any are found add them to the list
+          var ieFileResults = oHunter.SearchFile(sSearchFor, sFileText, sFile);
+          if (ieFileResults.Any())
           {
-            var eOptions = RegexOptions.Multiline;
-            if (!fMatchCase) eOptions |= RegexOptions.IgnoreCase;
-            foreach (Match oMatch in Regex.Matches(sFileText, sSearchFor, eOptions))
-            {
-              lstResults.Add(new Result(oMatch.Value, sFile));
-            }
+            lstResults.AddRange(ieFileResults);
           }
-          else
-          {
-            if (fMatchCase ? sFileText.Contains(sSearchFor) : sFileText.ToLower().Contains(sSearchFor.ToLower()))
-            {
-              string[] asFileText = sFileText.Split('\n');
 
-              //Finds all matches and adds them to the results list
-              lstResults.AddRange(asFileText.Where(s => (fMatchCase ? s : s.ToLower()).Contains((fMatchCase ? sSearchFor : sSearchFor.ToLower())))
-                                            .Select((sResult) => new Result(sResult.Trim(), sFile))); 
-            }
-          }
           ++dCurrentFile;
         }
       }

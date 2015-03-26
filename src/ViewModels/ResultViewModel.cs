@@ -136,7 +136,7 @@ namespace FullTextSearch.ViewModels
 
     #endregion
 
-    #region "Event Handlers"
+    #region Event Handlers
 
     void OpenFolderCommand_Executed(object sender, EventArgs e)
     {

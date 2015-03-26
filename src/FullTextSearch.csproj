@@ -56,7 +56,7 @@
     <ApplicationIcon>Assets\FullTextSearch.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -104,6 +104,11 @@
     <Compile Include="Commands\DefaultCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Models\FileSearch.cs" />
+    <Compile Include="Models\HunterFactory.cs" />
+    <Compile Include="Models\IgnoreCaseHunter.cs" />
+    <Compile Include="Models\Interface\IHunter.cs" />
+    <Compile Include="Models\LiteralHunter.cs" />
+    <Compile Include="Models\RegexHunter.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\ResultDetailViewModel.cs" />
     <Compile Include="ViewModels\ResultViewModel.cs" />
